@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_TestMethods" Id="{f34b9366-fbfa-4711-b7ed-be5010161638}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TestMethods
+VAR_INPUT
+	refReal		: REFERENCE TO REAL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	state1			: INT;
+	outP	: BOOL;
+	
+	check	: BOOl;
+END_VAR
+VAR PERSISTENT
+	persistentTest1	: REAL;
+	persistentTest2	: INT;
+	persistentTest3	: REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//outP	:= RealIsNan(refReal);
+
+CASE state1 OF
+	0: 
+		;
+		
+	1:	
+		METH(Execute	:= FALSE);
+		
+		METH(Execute	:= FALSE, done => check);
+	
+	2:
+		//check	:= METH.done;
+END_CASE]]></ST>
+    </Implementation>
+    <Method Name="METH" Id="{038f3ec5-7c72-487a-a5b8-e03524c85530}">
+      <Declaration><![CDATA[METHOD METH : int
+VAR_INPUT
+	Execute	: BOOL;
+END_VAR
+VAR_OUTPUT
+	done	: BOOL;
+END_VAR
+VAR
+	i : DINT;
+	Timer	: ton;
+END_VAR
+VAR_INST
+	ExecuteTrig	: R_TRIG;
+	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i := 1 TO 100000 BY 1 DO
+	Timer(In := TRUE,PT := T#5S);
+	IF i = 99999 THEN
+		METH := 5;
+	END_IF
+END_FOR
+
+ExecuteTrig(CLK := Execute);
+
+//outP	:= ExecuteTrig.Q;
+
+done	:= outP;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_TestMethods">
+      <LineId Id="54" Count="1" />
+      <LineId Id="23" Count="7" />
+      <LineId Id="34" Count="2" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestMethods.METH">
+      <LineId Id="5" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="25" Count="2" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="42" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

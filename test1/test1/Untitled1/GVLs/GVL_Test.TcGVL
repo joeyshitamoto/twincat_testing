@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL_Test" Id="{3668a101-a25e-4310-83e7-157344a4901c}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Bool1		: BOOL;
+	Bool2		: BOOL;
+	Bool3		: BOOL;
+	
+	Word1		: WORD;
+	Word2		: WORD;
+	Word3		: WORD;
+	
+	Real1		: REAL;
+	Real2		: REAL;
+	Real3		: REAL;
+	
+	Dint1		: DINT;
+	Dint2		: DINT;
+	Dint3		: DINT;
+	
+	arrByte		: ARRAY[1..100] OF BYTE;
+	
+	alarmGVL		: ST_VantagePro_Alarms; (* := (bAdsError := FALSE, nAdsErrorID := 0,
+													bComPortNotOpen := FALSE, nReceiveError := 0,
+													bReceiveTimeout := FALSE, bSendError := FALSE,
+													nSendErrorID := 0, bCommsNotOK := FALSE,
+													nRxError := 0, nTxError := 0);*)
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

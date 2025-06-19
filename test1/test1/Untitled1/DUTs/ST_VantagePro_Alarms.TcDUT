@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_VantagePro_Alarms" Id="{062ccd6f-6819-4d4a-9283-7de493a49b7c}">
+    <Declaration><![CDATA[TYPE ST_VantagePro_Alarms EXTENDS ST_SerialDevice_Alarms:
+STRUCT
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Test_2" Id="{8d880d00-9f16-4072-8929-a65a8adee6f6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_2
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	heyo : REFERENCE TO REAL;
+	random: BOOL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[random := not random;]]></ST>
+    </Implementation>
+    <Property Name="P_REAL" Id="{81ad758e-e003-4e15-8b60-ec7eed54278c}">
+      <Declaration><![CDATA[PROPERTY PUBLIC P_REAL : REFERENCE TO REAL]]></Declaration>
+      <Set Name="Set" Id="{abd13ffb-a39f-466e-bdb2-f1062c3da2bf}">
+        <Declaration><![CDATA[PUBLIC 
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[heyo REF= P_REAL;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="Test_2">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Test_2.P_REAL.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

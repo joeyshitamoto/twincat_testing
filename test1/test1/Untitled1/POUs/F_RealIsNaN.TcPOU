@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="F_RealIsNaN" Id="{f7e9610d-c963-4639-832a-2f4ef1c42da8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_RealIsNaN : BOOL
+VAR_INPUT
+	rInput			: REAL;
+END_VAR
+VAR
+	iBitWord		: DWORD;
+	
+	iExponent		: DWORD;
+	iExponentMask	: DWORD := 2#0111_1111__1000_0000__0000_0000__0000_0000;
+	
+	iMantissa		: DWORD := 2#0000_0000__0111_1111__1111_1111__1111_1111;
+	iMantissaMask	: DWORD := 2#0000_0000__0111_1111__1111_1111__1111_1111;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MEMCPY(ADR(iBitWord), ADR(rInput), SIZEOF(iBitWord));
+
+iExponent	:= iBitWord AND iExponentMask;
+
+iMantissa	:= iBitWord AND iMantissaMask;
+
+IF iExponent = iExponentMask AND iMantissa <> 0 THEN
+	F_RealIsNaN	:= TRUE;
+ELSE
+	F_RealIsNaN	:= FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="F_RealIsNaN">
+      <LineId Id="11" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="52" Count="1" />
+      <LineId Id="51" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

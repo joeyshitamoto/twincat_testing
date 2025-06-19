@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="F_REAL_TO_STRING" Id="{27593807-da48-47d1-9404-780258f75522}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_REAL_TO_STRING : STRING
+VAR_INPUT
+	rReal			: REAL;
+	iPrecision		: INT;
+END_VAR
+VAR
+	iTempInt		: DINT;
+	iWholeNum		: DINT;
+	iDecimal		: DINT;
+	
+	iAddZeros		: INT;
+	
+	sOut			: STRING;
+	
+	i				: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF RealIsNaN(rReal) THEN
+	RETURN;
+END_IF
+
+iTempInt := REAL_TO_DINT(rReal * EXPT(10,ABS(iPrecision)));
+
+iWholeNum	:= TRUNC(iTempInt / EXPT(10,ABS(iPrecision)));
+
+iDecimal	:= iTempInt - LREAL_TO_DINT(iWholeNum * EXPT(10,ABS(iPrecision)));
+
+sOut		:= CONCAT(DINT_TO_STRING(iWholeNum), '.');
+
+IF iDecimal > 0 THEN
+	iAddZeros	:= ABS(iPrecision) - DINT_TO_INT(TRUNC(LOG(iDecimal))) - 1;
+
+	FOR i := 1 TO iAddZeros DO
+		sOut	:= CONCAT(sOut,'0');
+	END_FOR
+	
+	sOut	:= CONCAT(sOut, DINT_TO_STRING(iDecimal));
+ELSE
+	iAddZeros	:= ABS(iPrecision);
+
+	FOR i := 1 TO iAddZeros DO
+		sOut	:= CONCAT(sOut,'0');
+	END_FOR
+END_IF
+
+F_REAL_TO_STRING	:= sOut;]]></ST>
+    </Implementation>
+    <LineIds Name="F_REAL_TO_STRING">
+      <LineId Id="12" Count="3" />
+      <LineId Id="34" Count="1" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="55" Count="1" />
+      <LineId Id="81" Count="5" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="87" Count="3" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="77" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Test_1" Id="{fa1ed945-89f6-4ed4-b3ce-2ab3f9743574}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_1
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	heyo : REAL;
+	random: BOOL;
+	io				: ST_ProfinetDiagnostics;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[random := not random;]]></ST>
+    </Implementation>
+    <Property Name="P_IO" Id="{e0dd2748-6ad2-4dde-8522-d0a99a3f5dfd}">
+      <Declaration><![CDATA[PROPERTY P_IO : REFERENCE TO ST_ProfinetDiagnostics]]></Declaration>
+      <Get Name="Get" Id="{b2dfdf14-f359-4846-a826-c33a2ee06640}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_IO REF= io;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_REAL" Id="{c36ddca3-5e7e-4a68-b180-064903a74aea}">
+      <Declaration><![CDATA[PROPERTY PUBLIC P_REAL : REFERENCE TO REAL]]></Declaration>
+      <Get Name="Get" Id="{f16b57d5-ff0f-42f4-983b-0bd3b57f2d8b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_REAL REF= heyo;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="Test_1">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Test_1.P_IO.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Test_1.P_REAL.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

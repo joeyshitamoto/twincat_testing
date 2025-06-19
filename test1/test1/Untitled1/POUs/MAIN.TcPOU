@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{147d2785-670b-49ad-926f-4270a2459348}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	io				: ST_ProfinetDiagnostics;	
+
+	refTest1		: Test_1;
+	refTest2		: Test_1;	
+	refTest3		: Test_2;	
+	
+	Iotest			AT %I* : BOOL;
+
+	rWindSpeed		: REAL;
+	rWindDirection	: REAL;
+	iStatusCode		: INT;
+	sResult			: STRING;
+	uniontest		: U_ByteToString;	
+
+	iNanWord1		: WORD;
+	iNanWord2		: WORD;
+	aNaNarray		: ARRAY[1..32] OF BOOL;
+	iNanDint		: DINT;
+	rNanTest		: REAL;
+	bNanResult		: BOOL;
+	refReal			: REFERENCE TO REAL;
+	
+	
+
+	arr				: ARRAY[1..10] OF BYTE;	
+	arrTest			: BOOL;
+	arrRead			: BOOL;
+
+	rReal			: REAL;
+	rRoundedReal	: REAL;
+	prec			: INT;
+	stringTest1		: STRING;
+	stringTest2		: STRING;
+	
+	iPrecision		: INT;
+	iTempInt		: DINT;
+	iWholeNum		: DINT;
+	iDecimal		: DINT;
+	
+	iAddZeros		: INT;
+	
+	sOut			: STRING;
+	
+	i				: INT;
+
+
+	test 	: ARRAY[0..2] OF BOOL;
+	test1	: BOOL;
+	testMeth1 : FB_TestMethods;
+	testMeth2 : FB_TestMethods;
+	testMeth : FB_TestMethods;
+	test2000 : BOOL;
+	what : INT;
+	
+	exec	: BOOL;
+	
+	Run			AT %Q* : BOOL;
+	Reset		AT %Q* : BOOL;
+	ErrAck		AT %Q* : BOOL;
+	
+	TestSafeInput2	AT %Q* : BOOL;
+	
+	t1 : DINT;
+	t2 : DINT;
+	t3 : DINT;
+	t4 : DINT;
+	t5 : DINT;
+	t6 : DINT;
+	
+	alarm		: ST_VantagePro_Alarms;
+	
+	fbWritePersistentData	: FB_WritePersistentData;
+	tonWritePersistentData	: TON;
+	
+	toggle1					: BOOL;
+	
+	randomBARIABLE		: REAL;
+	testMeth3 : FB_TestMethods;
+	testMeth4 : FB_TestMethods;
+	
+    nTaskIdx     : DINT;
+    nCycleTime   : UDINT;
+	
+	limits		: INT(-3..3);
+END_VAR
+VAR CONSTANT
+	alarmCons	: ST_VantagePro_Alarms := ();
+END_VAR
+VAR_TEMP
+	alarmTemp	: ST_VantagePro_Alarms;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[refTest1();
+refTest2();
+refTest3();
+
+refTest1.P_IO.PnIoBoxState := io.PnIoBoxState;
+refTest1.P_IO.PnIoBoxDiag := io.PnIoBoxDiag;
+io.PnIoBoxCtrl := refTest1.P_IO.PnIoBoxCtrl;
+
+refTest1.P_REAL := rWindSpeed;
+
+//refTest2.P_REAL := refTest1.P_REAL;
+//refTest3.P_REAL REF= refTest1.P_REAL;
+
+	sResult			:= uniontest.stringValue;
+	sResult			:= DELETE(sResult, FIND(sResult, ' '), 1);
+	
+	rWindSpeed		:= STRING_TO_REAL(LEFT(sResult, FIND(sResult, ' ') - 1));
+	sResult			:= DELETE(sResult, FIND(sResult, ' '), 1);
+	
+	rWindDirection	:= STRING_TO_REAL(LEFT(sResult, FIND(sResult, ' ') - 1));
+	sResult			:= DELETE(sResult, FIND(sResult, ' '), 1);
+	IF rWindDirection >= 360 THEN
+		rWindDirection	:= rWindDirection - 360;
+	END_IF
+	
+	iStatusCode		:= STRING_TO_INT(LEFT(sResult, FIND(sResult, '*') - 1));
+
+iNanDint. 0	:= aNaNarray[ 1];
+iNanDint. 1	:= aNaNarray[ 2];
+iNanDint. 2	:= aNaNarray[ 3];
+iNanDint. 3	:= aNaNarray[ 4];
+iNanDint. 4	:= aNaNarray[ 5];
+iNanDint. 5	:= aNaNarray[ 6];
+iNanDint. 6	:= aNaNarray[ 7];
+iNanDint. 7	:= aNaNarray[ 8];
+iNanDint. 8	:= aNaNarray[ 9];
+iNanDint. 9	:= aNaNarray[10];
+iNanDint.10	:= aNaNarray[11];
+iNanDint.11	:= aNaNarray[12];
+iNanDint.12	:= aNaNarray[13];
+iNanDint.13	:= aNaNarray[14];
+iNanDint.14	:= aNaNarray[15];
+iNanDint.15	:= aNaNarray[16];
+iNanDint.16	:= aNaNarray[17];
+iNanDint.17	:= aNaNarray[18];
+iNanDint.18	:= aNaNarray[19];
+iNanDint.19	:= aNaNarray[20];
+iNanDint.20	:= aNaNarray[21];
+iNanDint.21	:= aNaNarray[22];
+iNanDint.22	:= aNaNarray[23];
+
+iNanDint.23	:= aNaNarray[24];
+iNanDint.24	:= aNaNarray[25];
+iNanDint.25	:= aNaNarray[26];
+iNanDint.26	:= aNaNarray[27];
+iNanDint.27	:= aNaNarray[28];
+iNanDint.28	:= aNaNarray[29];
+iNanDint.29	:= aNaNarray[30];
+iNanDint.30	:= aNaNarray[31];
+
+iNanDint.31	:= aNaNarray[32];
+
+IF toggle1 THEN
+	MEMCPY(ADR(rNanTest), ADR(iNanDint), SIZEOF(iNanDint));
+END_IF
+	
+refReal		REF= rNanTest;
+
+bNanResult	:= F_RealIsNaN(rNanTest);
+
+//bNanResult	:= F_RealIsValid(rInput	:= rNanTest);
+
+//bNanResult	:= RealIsNan(refReal);
+
+//testMeth1(refReal	:= rNanTest);
+
+
+MEMCPY(ADR(arr), ADR(arrTest), SIZEOF(arrTest));
+
+MEMCPY(ADR(arrRead), ADR(arr[5]), SIZEOF(arrRead));
+
+arr[10]	:= BOOL_TO_BYTE(arrTest);
+
+rRoundedReal	:= F_Round_REAL(rReal,prec);
+stringTest1		:= REAL_TO_STRING(rRoundedReal);
+
+stringTest2		:= F_REAL_TO_STRING(rReal,prec);
+
+iPrecision	:= prec;
+iTempInt := REAL_TO_DINT(rReal * EXPT(10,ABS(iPrecision)));
+
+iWholeNum	:= TRUNC(iTempInt / EXPT(10,ABS(iPrecision)));
+
+iDecimal	:= iTempInt - LREAL_TO_DINT(iWholeNum * EXPT(10,ABS(iPrecision)));
+
+sOut		:= CONCAT(DINT_TO_STRING(iWholeNum), '.');
+
+IF iDecimal > 0 THEN
+	iAddZeros	:= ABS(iPrecision) - DINT_TO_INT(TRUNC(LOG(iDecimal))) - 1;
+
+	FOR i := 1 TO iAddZeros DO
+		sOut	:= CONCAT(sOut,'0');
+	END_FOR
+	
+	sOut	:= CONCAT(sOut, DINT_TO_STRING(iDecimal));
+ELSE
+	iAddZeros	:= ABS(iPrecision);
+
+	FOR i := 1 TO iAddZeros DO
+		sOut	:= CONCAT(sOut,'0');
+	END_FOR
+END_IF
+
+nTaskIdx := GETCURTASKINDEXEX();
+IF nTaskIdx > 0 THEN
+    nCycleTime := _TaskInfo[nTaskIdx].CycleTime;
+END_IF
+
+test[0] := TRUE;
+test[1] := FALSE;
+test[2] := TRUE;
+
+
+(*IF test = TRUE THEN
+	test1 := TRUE;
+ELSE
+	test1 := FALSE;
+END_IF*)
+
+testMeth();
+
+IF test2000 THEN
+	what := testMeth.METH(Execute	:= exec);
+	//test2000 := true;
+END_IF
+
+t1 := MEMCMP(ADR(GVL_test.alarmGVL), ADR(alarm), SIZEOF(GVL_test.alarmGVL));
+t2 := MEMCMP(ADR(GVL_test.alarmGVL), ADR(alarmCons), SIZEOF(GVL_test.alarmGVL));
+t3 := MEMCMP(ADR(GVL_test.alarmGVL), ADR(alarmTemp), SIZEOF(GVL_test.alarmGVL));
+t4 := MEMCMP(ADR(alarm), ADR(alarmCons), SIZEOF(alarm));
+t5 := MEMCMP(ADR(alarm), ADR(alarmTemp), SIZEOF(alarm));
+t6 := MEMCMP(ADR(alarmCons), ADR(alarmTemp), SIZEOF(alarmCons));
+
+////Save persistent data
+//tonWritePersistentData(IN := NOT tonWritePersistentData.Q, PT := T#10M);
+
+//fbWritePersistentData(
+//    Port         := 851,
+//    Start        := tonWritePersistentData.Q OR toggle1,
+//    Mode         := SPDM_VAR_BOOST);]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="953" Count="1" />
+      <LineId Id="1045" Count="0" />
+      <LineId Id="1232" Count="0" />
+      <LineId Id="1231" Count="0" />
+      <LineId Id="1233" Count="1" />
+      <LineId Id="1135" Count="1" />
+      <LineId Id="956" Count="0" />
+      <LineId Id="955" Count="0" />
+      <LineId Id="1046" Count="0" />
+      <LineId Id="849" Count="12" />
+      <LineId Id="864" Count="0" />
+      <LineId Id="848" Count="0" />
+      <LineId Id="434" Count="0" />
+      <LineId Id="439" Count="0" />
+      <LineId Id="462" Count="20" />
+      <LineId Id="763" Count="0" />
+      <LineId Id="483" Count="7" />
+      <LineId Id="764" Count="0" />
+      <LineId Id="504" Count="0" />
+      <LineId Id="760" Count="0" />
+      <LineId Id="591" Count="0" />
+      <LineId Id="762" Count="0" />
+      <LineId Id="761" Count="0" />
+      <LineId Id="510" Count="1" />
+      <LineId Id="766" Count="0" />
+      <LineId Id="765" Count="0" />
+      <LineId Id="679" Count="0" />
+      <LineId Id="678" Count="0" />
+      <LineId Id="512" Count="0" />
+      <LineId Id="431" Count="0" />
+      <LineId Id="514" Count="0" />
+      <LineId Id="513" Count="0" />
+      <LineId Id="426" Count="1" />
+      <LineId Id="335" Count="0" />
+      <LineId Id="355" Count="1" />
+      <LineId Id="351" Count="0" />
+      <LineId Id="350" Count="0" />
+      <LineId Id="331" Count="0" />
+      <LineId Id="279" Count="0" />
+      <LineId Id="282" Count="0" />
+      <LineId Id="284" Count="0" />
+      <LineId Id="289" Count="0" />
+      <LineId Id="328" Count="0" />
+      <LineId Id="290" Count="22" />
+      <LineId Id="285" Count="0" />
+      <LineId Id="280" Count="0" />
+      <LineId Id="211" Count="0" />
+      <LineId Id="213" Count="1" />
+      <LineId Id="209" Count="1" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="164" Count="1" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="14" Count="2" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="78" Count="3" />
+      <LineId Id="113" Count="7" />
+      <LineId Id="82" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

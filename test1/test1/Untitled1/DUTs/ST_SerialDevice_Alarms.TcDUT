@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_SerialDevice_Alarms" Id="{be3d5212-2afb-4096-9d92-aed62c860eed}">
+    <Declaration><![CDATA[TYPE ST_SerialDevice_Alarms :
+STRUCT
+	bAdsError			: BOOL;
+	nAdsErrorID		    : UDINT;
+	bComPortNotOpen	    : BOOL;
+	nReceiveError		: INT;
+	bReceiveTimeout	    : BOOL;
+	bSendError		    : BOOL;
+	nSendErrorID		: INT;
+	bCommsNotOK		    : BOOL;
+	nRxError			: UDINT;
+	nTxError			: UDINT;
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

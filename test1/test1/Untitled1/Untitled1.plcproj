@@ -1,0 +1,129 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0d69ec8d-2299-42ef-9a7c-f11d15bcf132}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>Untitled1</Name>
+    <ProgramVersion>3.1.4024.0</ProgramVersion>
+    <Application>{3506d4ba-16c6-4dd0-ade2-26e49e3b7433}</Application>
+    <TypeSystem>{dc802102-d236-48b2-8c42-a3ec12f421e7}</TypeSystem>
+    <Implicit_Task_Info>{f0196a3f-09be-42dc-b7d3-c94bdcce6f8e}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{21249478-c7dd-4ef8-8a30-e960edc340fa}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{69cd110c-7fb9-40f3-a499-5b1ebaba78ce}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{cad39655-2032-4cd1-98ae-566e6e03619d}</LibraryReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DUTs\ST_ProfinetDiagnostics.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_SerialDevice_Alarms.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_VantagePro_Alarms.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\U_ByteToString.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\GVL_Test.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FB_TestMethods.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\F_RealIsValid.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\F_RealIsNaN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\F_REAL_TO_STRING.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\F_Round_REAL.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Test_1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Test_2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DUTs" />
+    <Folder Include="GVLs" />
+    <Folder Include="Inception" />
+    <Folder Include="Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception\Inception" />
+    <Folder Include="VISUs" />
+    <Folder Include="POUs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Utilities">
+      <DefaultResolution>Tc2_Utilities, * (Beckhoff Automation GmbH)</DefaultResolution>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Untitled1.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" />
+      <d n="Values" t="Hashtable" />
+    </o>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

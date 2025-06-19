@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="F_Round_REAL" Id="{b9cf1da4-c3b2-46c2-bd68-9a65f318233e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_Round_REAL : REAL
+VAR_INPUT
+	rInReal			: REAL;
+	iPrecision		: INT;
+END_VAR
+VAR
+	rOutReal		: REAL;
+	rRoundingVal	: REAL; //last digit for rounding purposes
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF RealIsNaN(rInReal) THEN
+	RETURN;
+END_IF
+
+rOutReal := rInReal * EXPT(10,ABS(iPrecision));
+
+rRoundingVal := rOutReal - DINT_TO_REAL(TRUNC(rOutReal));
+IF rRoundingVal >= 0.5 THEN
+	rOutReal	:= DINT_TO_REAL(TRUNC(rOutReal)) + 1;
+ELSIF rRoundingVal <= -0.5 THEN
+	rOutReal	:= DINT_TO_REAL(TRUNC(rOutReal)) - 1;
+ELSE
+	rOutReal	:= DINT_TO_REAL(TRUNC(rOutReal));
+END_IF
+
+F_Round_REAL	:= rOutReal / EXPT(10,ABS(iPrecision));]]></ST>
+    </Implementation>
+    <LineIds Name="F_Round_REAL">
+      <LineId Id="51" Count="3" />
+      <LineId Id="32" Count="10" />
+      <LineId Id="31" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="U_ByteToString" Id="{f0204b60-3b81-4ce6-910d-4c45a59187aa}">
+    <Declaration><![CDATA[TYPE U_ByteToString :
+UNION
+	byteArrayValue		: ARRAY[0..99] OF BYTE;
+	stringValue			: STRING(99);
+	realValue			: REAL;
+	wordValue			: WORD;
+END_UNION
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
