@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <POU Name="MAIN" Id="{147d2785-670b-49ad-926f-4270a2459348}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	err_ack		AT %Q* : BOOL;
+	FSoE1		AT %I* : BOOL;	
+	FSoE2		AT %I* : BOOL;	
+	FSoE3		AT %I* : BOOL;	
+	FSoE4		AT %I* : BOOL;	
+	FSoEout		AT %Q* : BOOL;	
+
 	io				: ST_ProfinetDiagnostics;	
 
 	refTest1		: Test_1;
