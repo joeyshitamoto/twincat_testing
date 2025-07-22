@@ -3,6 +3,13 @@
   <POU Name="MAIN" Id="{147d2785-670b-49ad-926f-4270a2459348}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	rInternalDistanceMastering	: REAL;
+	iDataByte1		: BYTE;
+	iDataByte2		: BYTE;
+	iDataByte3		: BYTE;
+	dwordtest		: DWORD := 90000;
+	uString		: U_ReceivedData;	
+
 	err_ack		AT %Q* : BOOL;
 	FSoE1		AT %I* : BOOL;	
 	FSoE2		AT %I* : BOOL;	
@@ -102,7 +109,17 @@ VAR_TEMP
 	alarmTemp	: ST_VantagePro_Alarms;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[refTest1();
+      <ST><![CDATA[iPrecision := BIT_TO_INT(dwordtest.1) * 3;
+
+//iPrecision := 10;
+//rInternalDistanceMastering	:= (DWORD_TO_REAL(dwordtest) * 102/65520 - 51)/100 * iPrecision;
+
+//iStatusCode	:= LEN(uString.DataString);
+
+//dwordtest	:= SHL(iDataByte3 AND 2#0011_1111, 12) OR SHL(iDataByte2 AND 2#0011_1111, 6) OR iDataByte1 AND 2#0011_1111;
+
+(*
+refTest1();
 refTest2();
 refTest3();
 
@@ -251,9 +268,18 @@ t6 := MEMCMP(ADR(alarmCons), ADR(alarmTemp), SIZEOF(alarmCons));
 //fbWritePersistentData(
 //    Port         := 851,
 //    Start        := tonWritePersistentData.Q OR toggle1,
-//    Mode         := SPDM_VAR_BOOST);]]></ST>
+//    Mode         := SPDM_VAR_BOOST);
+*)]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
+      <LineId Id="1355" Count="1" />
+      <LineId Id="1347" Count="0" />
+      <LineId Id="1346" Count="0" />
+      <LineId Id="1350" Count="0" />
+      <LineId Id="1348" Count="1" />
+      <LineId Id="1335" Count="0" />
+      <LineId Id="1351" Count="0" />
+      <LineId Id="1336" Count="0" />
       <LineId Id="953" Count="1" />
       <LineId Id="1045" Count="0" />
       <LineId Id="1232" Count="0" />
@@ -322,6 +348,7 @@ t6 := MEMCMP(ADR(alarmCons), ADR(alarmTemp), SIZEOF(alarmCons));
       <LineId Id="78" Count="3" />
       <LineId Id="113" Count="7" />
       <LineId Id="82" Count="0" />
+      <LineId Id="1337" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
