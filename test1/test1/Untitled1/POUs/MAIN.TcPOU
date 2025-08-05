@@ -3,6 +3,12 @@
   <POU Name="MAIN" Id="{147d2785-670b-49ad-926f-4270a2459348}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	rRatio		: LREAL;
+	rCountShort	: LREAL;
+	rCountLong	: LREAL;
+	tonShort	: TON;
+	tonLong		: LTON;
+
 	rInternalDistanceMastering	: REAL;
 	iDataByte1		: BYTE;
 	iDataByte2		: BYTE;
@@ -109,7 +115,20 @@ VAR_TEMP
 	alarmTemp	: ST_VantagePro_Alarms;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[iPrecision := BIT_TO_INT(dwordtest.1) * 3;
+      <ST><![CDATA[tonShort(IN := NOT tonShort.Q, PT := T#40MS);
+tonLong(IN := TRUE, PT := LTIME#213503D);
+
+IF tonShort.Q THEN
+	rCountShort	:= 	rCountShort + 40;	
+END_IF
+
+rCountLong	:= LTIME_TO_LREAL(tonLong.ET)/1_000_000;
+
+IF rCountShort > 0 THEN
+	rRatio		:= rCountLong/rCountShort;
+END_IF
+
+//iPrecision := BIT_TO_INT(dwordtest.1) * 3;
 
 //iPrecision := 10;
 //rInternalDistanceMastering	:= (DWORD_TO_REAL(dwordtest) * 102/65520 - 51)/100 * iPrecision;
@@ -272,6 +291,18 @@ t6 := MEMCMP(ADR(alarmCons), ADR(alarmTemp), SIZEOF(alarmCons));
 *)]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
+      <LineId Id="1464" Count="0" />
+      <LineId Id="1477" Count="1" />
+      <LineId Id="1471" Count="0" />
+      <LineId Id="1481" Count="0" />
+      <LineId Id="1480" Count="0" />
+      <LineId Id="1475" Count="0" />
+      <LineId Id="1474" Count="0" />
+      <LineId Id="1485" Count="0" />
+      <LineId Id="1484" Count="0" />
+      <LineId Id="1483" Count="0" />
+      <LineId Id="1486" Count="0" />
+      <LineId Id="1466" Count="0" />
       <LineId Id="1355" Count="1" />
       <LineId Id="1347" Count="0" />
       <LineId Id="1346" Count="0" />

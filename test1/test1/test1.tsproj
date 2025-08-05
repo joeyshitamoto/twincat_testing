@@ -67,14 +67,14 @@
 				<IoIdleTask Priority="8"/>
 			</Settings>
 			<Tasks>
-				<Task Id="3" Priority="20" CycleTime="80000" AmsPort="350" AdtTasks="true">
+				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
 			</Tasks>
 		</System>
 		<Plc>
 			<Project GUID="{0D69EC8D-2299-42EF-9A7C-F11D15BCF132}" Name="Untitled1" PrjFilePath="Untitled1\Untitled1.plcproj" TmcFilePath="Untitled1\Untitled1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{A19446BA-F5F7-49AD-8F1E-659720235690}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{8C2F93D1-BF5D-92DB-AA8F-C07E0605BDAB}">
 					<Name>Untitled1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -96,11 +96,19 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.Iotest</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.io.PnIoBoxState</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.io.PnIoBoxDiag</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.refTest2.io.PnIoBoxState</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -112,34 +120,26 @@
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.refTest2.io.PnIoBoxState</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.refTest2.io.PnIoBoxDiag</Name>
 							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Iotest</Name>
-							<Type>BOOL</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
 						<Var>
-							<Name>MAIN.err_ack</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.FSoEout</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.io.PnIoBoxCtrl</Name>
+							<Name>MAIN.refTest1.io.PnIoBoxCtrl</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.refTest1.io.PnIoBoxCtrl</Name>
+							<Name>MAIN.err_ack</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.io.PnIoBoxCtrl</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -171,7 +171,7 @@
 								<OTCID>#x02010030</OTCID>
 							</ManualConfig>
 							<Priority>20</Priority>
-							<CycleTime>8000000</CycleTime>
+							<CycleTime>10000000</CycleTime>
 						</Context>
 					</Contexts>
 					<TaskPouOids>
